@@ -7,7 +7,7 @@ INPUT:
 
 TEST:
   IMS_PER_BATCH: 1
-  WEIGHT: "models/model_challenge.pth"
+  WEIGHT: "models/model_test.pth"
 
 DATASETS:
   TRAIN: "sviewds"
