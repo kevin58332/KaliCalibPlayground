@@ -61,12 +61,18 @@ def main():
             logger.info(config_str)
     logger.info("Running with config:\n{}".format(cfg))
 
+    print(torch.cuda.is_available())
+    print(cfg)
+    print(cfg.MODEL.DEVICE)
     model = makeModel().to(cfg.MODEL.DEVICE)
+    # model = makeModel().to('cpu')
     model.eval()
     if cfg.TEST.WEIGHT[-3:] == "pkl":
         model.load_state_dict(torch.load(cfg.TEST.WEIGHT))
     else:
+        # model.load_state_dict(torch.load(cfg.TEST.WEIGHT, map_location ='cpu'))
         model.load_state_dict(torch.load(cfg.TEST.WEIGHT))
+    print("kaljsdfkaljflsdajfl")
     val_loader = make_data_loader(cfg, is_train=False)
 
     evaluation(cfg, model, val_loader)
